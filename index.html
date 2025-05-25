@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Max Mustermann - Developer & Creator</title>
+    <title>Patryk - Developer & IT Consultant</title>
+    <meta name="description" content="Patryk (giffynuss) - Business Informatics Student, IT Consultant & Developer specializing in modern web applications and enterprise solutions.">
     <style>
         * {
             margin: 0;
@@ -149,11 +150,28 @@
             margin: 0 auto;
         }
 
+        .personality-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
         /* Skills */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
+            margin-bottom: 3rem;
         }
 
         .skill-card {
@@ -179,6 +197,22 @@
             margin-bottom: 1rem;
             font-size: 1.5rem;
             color: white;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .skill-item {
+            background: #f8f9fa;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: #667eea;
+            font-weight: 500;
         }
 
         /* Projects */
@@ -212,6 +246,22 @@
 
         .project-content {
             padding: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: #667eea;
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 500;
         }
 
         /* Timeline */
@@ -307,6 +357,11 @@
             transform: translateY(-5px);
         }
 
+        .contact-item a {
+            text-decoration: none;
+            color: inherit;
+        }
+
         .contact-icon {
             font-size: 2rem;
             margin-bottom: 1rem;
@@ -361,43 +416,56 @@
             .timeline-item:nth-child(even) {
                 left: 0%;
             }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 <body>
     <header>
         <nav class="container">
-            <div class="logo">Portfolio</div>
+            <div class="logo">giffynuss</div>
             <ul class="nav-links">
-                <li><a href="#about">Über mich</a></li>
+                <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projekte</a></li>
-                <li><a href="#timeline">Werdegang</a></li>
-                <li><a href="#contact">Kontakt</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#timeline">Journey</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="hero">
         <div class="hero-content">
-            <h1>Max Mustermann</h1>
-            <p>Developer • Creator • Problem Solver</p>
-            <a href="#about" class="cta-button">Mehr erfahren</a>
+            <h1>Patryk</h1>
+            <p>Business Informatics Student • IT Consultant • Developer</p>
+            <a href="#about" class="cta-button">Learn More</a>
         </div>
     </section>
 
     <section id="about">
         <div class="container">
-            <h2 class="section-title">Über mich</h2>
+            <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="profile-img">👨‍💻</div>
                 <div>
-                    <h3>Hallo, ich bin Max!</h3>
-                    <p>Ich bin ein leidenschaftlicher Entwickler mit einer Vorliebe für sauberen Code und innovative Lösungen. In meiner Freizeit experimentiere ich gerne mit neuen Technologien und arbeite an persönlichen Projekten.</p>
+                    <h3>Hi, I'm Patryk!</h3>
+                    <p>Also known as <strong>giffynuss</strong> and <strong>Yonya</strong> in the digital world. I'm currently pursuing a B.Sc. in Business Informatics while simultaneously completing an apprenticeship as an IT Specialist in Application Development and earning an IT Consultant certification.</p>
                     <br>
-                    <p>Wenn ich nicht gerade programmiere, findest du mich beim Lesen von Tech-Blogs, beim Spielen von Strategiespielen oder beim Erkunden neuer Cafés in der Stadt.</p>
+                    <p>I'm passionate about technology - both hardware and software. I love experimenting with new technologies and I'm always curious to learn something new. Everything related to technology fascinates me, and I enjoy developing, creating, and building useful solutions.</p>
                     <br>
-                    <p><strong>Fun Fact:</strong> Ich sammle mechanische Tastaturen und habe bereits über 15 verschiedene Modelle ausprobiert! 🤓</p>
+                    <p>I have a particular interest in improving processes, structures, and complex environments. When I'm not coding, you'll find me engaged in sports, playing video games, working on personal projects, exploring automotive technology, traveling, attending concerts, or spending quality time with friends.</p>
+                    
+                    <div class="personality-tags">
+                        <span class="tag">Tech Enthusiast</span>
+                        <span class="tag">Problem Solver</span>
+                        <span class="tag">Always Learning</span>
+                        <span class="tag">Creative Developer</span>
+                        <span class="tag">Music Lover</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -405,27 +473,55 @@
 
     <section id="skills">
         <div class="container">
-            <h2 class="section-title">Skills & Technologien</h2>
+            <h2 class="section-title">Skills & Technologies</h2>
             <div class="skills-grid">
                 <div class="skill-card">
                     <div class="skill-icon">💻</div>
-                    <h3>Frontend Development</h3>
-                    <p>React, Vue.js, HTML5, CSS3, JavaScript, TypeScript</p>
+                    <h3>Programming Languages</h3>
+                    <p>Core programming languages I work with daily</p>
+                    <div class="skill-list">
+                        <span class="skill-item">Python</span>
+                        <span class="skill-item">C#</span>
+                        <span class="skill-item">C/C++</span>
+                        <span class="skill-item">Java</span>
+                        <span class="skill-item">JavaScript</span>
+                        <span class="skill-item">Dart</span>
+                    </div>
                 </div>
                 <div class="skill-card">
-                    <div class="skill-icon">⚙️</div>
-                    <h3>Backend Development</h3>
-                    <p>Node.js, Python, Express, FastAPI, PostgreSQL</p>
+                    <div class="skill-icon">🗄️</div>
+                    <h3>Database & Backend</h3>
+                    <p>Server-side technologies and database management</p>
+                    <div class="skill-list">
+                        <span class="skill-item">SQL</span>
+                        <span class="skill-item">PL/SQL</span>
+                        <span class="skill-item">Node.js</span>
+                        <span class="skill-item">Git</span>
+                    </div>
                 </div>
                 <div class="skill-card">
-                    <div class="skill-icon">☁️</div>
-                    <h3>Cloud & DevOps</h3>
-                    <p>AWS, Docker, Kubernetes, CI/CD, Git</p>
+                    <div class="skill-icon">📱</div>
+                    <h3>Frameworks & Development</h3>
+                    <p>Modern frameworks for efficient development</p>
+                    <div class="skill-list">
+                        <span class="skill-item">Flutter</span>
+                        <span class="skill-item">WPF</span>
+                        <span class="skill-item">Capacitor</span>
+                        <span class="skill-item">HTML/CSS</span>
+                    </div>
                 </div>
                 <div class="skill-card">
-                    <div class="skill-icon">🎨</div>
-                    <h3>Design & Tools</h3>
-                    <p>Figma, Adobe XD, Photoshop, UI/UX Principles</p>
+                    <div class="skill-icon">🏢</div>
+                    <h3>Business & Management</h3>
+                    <p>Enterprise solutions and methodologies</p>
+                    <div class="skill-list">
+                        <span class="skill-item">ITIL</span>
+                        <span class="skill-item">SCRUM</span>
+                        <span class="skill-item">SAP ERP</span>
+                        <span class="skill-item">MS Office</span>
+                        <span class="skill-item">Linux</span>
+                        <span class="skill-item">Business English (C1)</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -433,30 +529,78 @@
 
     <section id="projects">
         <div class="container">
-            <h2 class="section-title">Aktuelle Projekte</h2>
+            <h2 class="section-title">Current Projects</h2>
             <div class="projects-grid">
                 <div class="project-card">
-                    <div class="project-img">🚀</div>
+                    <div class="project-img">🏃‍♂️</div>
                     <div class="project-content">
-                        <h3>Task Management App</h3>
-                        <p>Eine moderne To-Do App mit React und Node.js. Features: Real-time Updates, Team Collaboration, Smart Notifications.</p>
-                        <p><strong>Tech:</strong> React, Node.js, Socket.io, MongoDB</p>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-img">📊</div>
-                    <div class="project-content">
-                        <h3>Data Visualization Tool</h3>
-                        <p>Ein Dashboard für die Visualisierung komplexer Datensets mit interaktiven Charts und Filtern.</p>
-                        <p><strong>Tech:</strong> Vue.js, D3.js, Python, FastAPI</p>
+                        <h3>Sports Festival App</h3>
+                        <p>A comprehensive sports festival management application for data recording, organization, and management. Designed for both event organizers and supervisors with real-time capabilities.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">HTML/CSS</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Capacitor</span>
+                        </div>
                     </div>
                 </div>
                 <div class="project-card">
                     <div class="project-img">🤖</div>
                     <div class="project-content">
-                        <h3>Chat Bot Framework</h3>
-                        <p>Ein erweiterbares Framework für die Entwicklung von KI-gestützten Chatbots mit verschiedenen Integrationen.</p>
-                        <p><strong>Tech:</strong> Python, TensorFlow, REST APIs</p>
+                        <h3>Ivy Discord Bot</h3>
+                        <p>A versatile all-in-one Discord bot designed for both regular users and administrators. Features include server management, user utilities, and custom functionality.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Discord.js</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">🎨</div>
+                    <div class="project-content">
+                        <h3>Custom Discord Theme</h3>
+                        <p>A personalized Discord theme that runs through various plugins, enhancing the user interface with custom styling and improved user experience.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JSON</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">⛏️</div>
+                    <div class="project-content">
+                        <h3>Minecraft Resource Pack</h3>
+                        <p>A personalized Minecraft resource pack with various customizations designed to enhance the gaming experience with improved textures and UI elements.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Game Design</span>
+                            <span class="tech-tag">Texture Art</span>
+                            <span class="tech-tag">JSON</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">📱</div>
+                    <div class="project-content">
+                        <h3>Small App Projects</h3>
+                        <p>Various smaller applications and utilities I've developed to solve specific problems or explore new technologies. Always working on something new!</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Various</span>
+                            <span class="tech-tag">Experimental</span>
+                            <span class="tech-tag">Learning</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">💡</div>
+                    <div class="project-content">
+                        <h3>And Many More...</h3>
+                        <p>I'm constantly working on new projects and ideas. Check out my GitHub for the latest updates and contributions to the open-source community!</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Ongoing</span>
+                            <span class="tech-tag">Innovation</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -465,34 +609,27 @@
 
     <section id="timeline">
         <div class="container">
-            <h2 class="section-title">Mein Werdegang</h2>
+            <h2 class="section-title">My Journey</h2>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h3>2024 - Heute</h3>
-                        <h4>Senior Developer</h4>
-                        <p>Leitung von Frontend-Projekten und Mentoring von Junior-Entwicklern bei TechCorp GmbH.</p>
+                        <h3>2027 - Future</h3>
+                        <h4>Career Opportunities</h4>
+                        <p>Looking forward to exciting opportunities in the IT industry, potentially joining innovative companies to contribute to cutting-edge projects.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h3>2022 - 2024</h3>
-                        <h4>Full-Stack Developer</h4>
-                        <p>Entwicklung von Web-Anwendungen mit modernen JavaScript-Frameworks und Cloud-Technologien.</p>
+                        <h3>2023 - Present</h3>
+                        <h4>Triple Education Path</h4>
+                        <p>Currently pursuing B.Sc. Business Informatics, completing IT Specialist apprenticeship, and earning IT Consultant certification. Dual program with international company in cooperation with Siemens Energy AG.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h3>2020 - 2022</h3>
-                        <h4>Junior Developer</h4>
-                        <p>Erste berufliche Erfahrungen in der Softwareentwicklung bei StartupXYZ.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>2017 - 2020</h3>
-                        <h4>Informatik Studium</h4>
-                        <p>Bachelor of Science in Informatik an der Universität Musterstadt.</p>
+                        <h3>2023</h3>
+                        <h4>High School Graduate</h4>
+                        <p>Successfully completed Abitur in Germany, laying the foundation for my higher education and professional development in the IT field.</p>
                     </div>
                 </div>
             </div>
@@ -501,22 +638,27 @@
 
     <section id="status" style="background: #f8f9fa;">
         <div class="container">
-            <h2 class="section-title">Was ich gerade mache</h2>
+            <h2 class="section-title">What I'm Up To</h2>
             <div class="status-grid">
                 <div class="status-card">
-                    <div class="status-emoji">📚</div>
-                    <h3>Aktuell lerne ich</h3>
-                    <p>Rust Programming Language und Machine Learning mit PyTorch</p>
+                    <div class="status-emoji">🎓</div>
+                    <h3>Currently Studying</h3>
+                    <p>B.Sc. Business Informatics + IT Specialist Apprenticeship + IT Consultant Certification</p>
                 </div>
                 <div class="status-card">
                     <div class="status-emoji">🎵</div>
-                    <h3>Höre gerade</h3>
-                    <p>Lo-Fi Hip Hop Beats und Klaviermusik beim Programmieren</p>
+                    <h3>Currently Listening</h3>
+                    <p>Hip Hop, J-Pop, Alternative Rock, and exploring new genres that inspire creativity</p>
                 </div>
                 <div class="status-card">
-                    <div class="status-emoji">📖</div>
-                    <h3>Lese gerade</h3>
-                    <p>"Clean Architecture" von Robert C. Martin</p>
+                    <div class="status-emoji">🚀</div>
+                    <h3>Currently Building</h3>
+                    <p>Working on innovative projects that solve real-world problems and enhance user experiences</p>
+                </div>
+                <div class="status-card">
+                    <div class="status-emoji">🌱</div>
+                    <h3>Always Learning</h3>
+                    <p>Exploring new technologies, methodologies, and staying updated with the latest industry trends</p>
                 </div>
             </div>
         </div>
@@ -524,27 +666,31 @@
 
     <section id="contact">
         <div class="container">
-            <h2 class="section-title">Lass uns connecten!</h2>
+            <h2 class="section-title">Let's Connect!</h2>
             <div class="contact-grid">
                 <div class="contact-item">
-                    <div class="contact-icon">📧</div>
-                    <h3>E-Mail</h3>
-                    <p>max@beispiel.de</p>
+                    <a href="mailto:patrykbulla.work@gmail.com">
+                        <div class="contact-icon">📧</div>
+                        <h3>Email</h3>
+                        <p>patrykbulla.work@gmail.com</p>
+                    </a>
+                </div>
+                <div class="contact-item">
+                    <a href="https://github.com/giffynuss" target="_blank">
+                        <div class="contact-icon">🐙</div>
+                        <h3>GitHub</h3>
+                        <p>github.com/giffynuss</p>
+                    </a>
                 </div>
                 <div class="contact-item">
                     <div class="contact-icon">💼</div>
                     <h3>LinkedIn</h3>
-                    <p>linkedin.com/in/maxmustermann</p>
+                    <p>Coming Soon</p>
                 </div>
                 <div class="contact-item">
-                    <div class="contact-icon">🐙</div>
-                    <h3>GitHub</h3>
-                    <p>github.com/maxmustermann</p>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">🐦</div>
-                    <h3>Twitter</h3>
-                    <p>@maxmustermann</p>
+                    <div class="contact-icon">🎮</div>
+                    <h3>Discord</h3>
+                    <p>@giffynuss</p>
                 </div>
             </div>
         </div>
@@ -552,7 +698,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Max Mustermann. Made with ❤️ and lots of ☕</p>
+            <p>&copy; 2025 Patryk (giffynuss). Crafted with ❤️ and lots of ☕</p>
         </div>
     </footer>
 
@@ -561,9 +707,12 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
 
@@ -581,8 +730,19 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.skill-card, .project-card, .timeline-item').forEach(el => {
+        document.querySelectorAll('.skill-card, .project-card, .timeline-item, .status-card').forEach(el => {
             observer.observe(el);
+        });
+
+        // Add some interactivity to contact items
+        document.querySelectorAll('.contact-item a').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
         });
     </script>
 </body>
