@@ -572,6 +572,16 @@
             box-shadow: 0 5px 25px var(--card-shadow);
             transition: all 0.3s ease;
             border: 1px solid var(--border-color);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .contact-item p {
+            word-break: break-all;
+            overflow-wrap: break-word;
+            font-size: 0.9rem;
+            line-height: 1.4;
         }
 
         .contact-item:hover {
