@@ -32,7 +32,7 @@
     {
         "@context": "https://schema.org",
         "@type": "Person",
-        "name": "Patryk",
+        "name": "Patryk Bulla",
         "alternateName": "giffynuss",
         "jobTitle": ["IT Consultant", "Developer", "Business Informatics Student"],
         "description": "Business Informatics Student, IT Consultant & Developer specializing in modern web applications and enterprise solutions.",
@@ -47,37 +47,37 @@
     
     <style>
         :root {
-            /* Light mode colors */
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8f9fa;
-            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --text-primary: #333333;
-            --text-secondary: #666666;
-            --text-light: rgba(255, 255, 255, 0.9);
-            --accent-primary: #667eea;
-            --accent-secondary: #764ba2;
+            /* Light mode colors - Violet Theme */
+            --bg-primary: #faf8ff;
+            --bg-secondary: #f3f0ff;
+            --bg-gradient: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            --text-primary: #2d1b4e;
+            --text-secondary: #553c9a;
+            --text-light: rgba(255, 255, 255, 0.95);
+            --accent-primary: #8b5cf6;
+            --accent-secondary: #7c3aed;
             --card-bg: #ffffff;
-            --card-shadow: rgba(0, 0, 0, 0.1);
+            --card-shadow: rgba(139, 92, 246, 0.15);
             --header-bg: rgba(255, 255, 255, 0.95);
-            --skill-bg: #f8f9fa;
-            --border-color: #e9ecef;
+            --skill-bg: #f3f0ff;
+            --border-color: #e9d5ff;
         }
         
         [data-theme="dark"] {
-            /* Dark mode colors */
-            --bg-primary: #1a1a1a;
-            --bg-secondary: #2d2d2d;
-            --bg-gradient: linear-gradient(135deg, #4a5568 0%, #553c9a 100%);
-            --text-primary: #f7fafc;
-            --text-secondary: #a0aec0;
-            --text-light: rgba(247, 250, 252, 0.9);
-            --accent-primary: #667eea;
-            --accent-secondary: #764ba2;
-            --card-bg: #2d3748;
-            --card-shadow: rgba(0, 0, 0, 0.3);
-            --header-bg: rgba(45, 55, 72, 0.95);
-            --skill-bg: #4a5568;
-            --border-color: #4a5568;
+            /* Dark mode colors - with Violet Accents */
+            --bg-primary: #0f0f23;
+            --bg-secondary: #1a1a2e;
+            --bg-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-light: rgba(241, 245, 249, 0.95);
+            --accent-primary: #a855f7;
+            --accent-secondary: #8b5cf6;
+            --card-bg: #16213e;
+            --card-shadow: rgba(168, 85, 247, 0.2);
+            --header-bg: rgba(22, 33, 62, 0.95);
+            --skill-bg: #1e293b;
+            --border-color: #334155;
         }
 
         * {
@@ -189,6 +189,7 @@
             background: var(--accent-primary);
             color: white;
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--card-shadow);
         }
 
         /* Hero Section */
@@ -210,13 +211,15 @@
             font-size: 4rem;
             margin-bottom: 1rem;
             font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            color: white;
         }
 
         .hero p {
             font-size: 1.5rem;
             margin-bottom: 2rem;
-            opacity: 0.9;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
         }
 
         .cta-button {
@@ -964,11 +967,9 @@
             <h2 class="section-title">Let's Connect!</h2>
             <div class="contact-grid">
                 <div class="contact-item">
-                    <a href="mailto:patrykbulla.work@gmail.com" aria-label="Send email to Patryk">
-                        <div class="contact-icon">📧</div>
-                        <h3>Email</h3>
-                        <p>patrykbulla.work@gmail.com</p>
-                    </a>
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <p>Coming Soon</p>
                 </div>
                 <div class="contact-item">
                     <a href="https://github.com/giffynuss" target="_blank" rel="noopener noreferrer" aria-label="Visit GitHub profile">
