@@ -47,37 +47,35 @@
     
     <style>
         :root {
-            /* Light mode colors - Violet Theme */
-            --bg-primary: #faf8ff;
-            --bg-secondary: #f3f0ff;
-            --bg-gradient: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
-            --text-primary: #2d1b4e;
-            --text-secondary: #553c9a;
-            --text-light: rgba(255, 255, 255, 0.95);
+            /* Light mode - Clean Modern Theme with Violet Accents */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
             --accent-primary: #8b5cf6;
             --accent-secondary: #7c3aed;
+            --accent-tertiary: #a855f7;
             --card-bg: #ffffff;
-            --card-shadow: rgba(139, 92, 246, 0.15);
-            --header-bg: rgba(255, 255, 255, 0.95);
-            --skill-bg: #f3f0ff;
-            --border-color: #e9d5ff;
+            --card-shadow: rgba(139, 92, 246, 0.12);
+            --border-light: #e2e8f0;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
         }
         
         [data-theme="dark"] {
-            /* Dark mode colors - with Violet Accents */
-            --bg-primary: #0f0f23;
-            --bg-secondary: #1a1a2e;
-            --bg-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            /* Dark mode - Modern Violet Theme */
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
             --text-primary: #f1f5f9;
-            --text-secondary: #cbd5e1;
-            --text-light: rgba(241, 245, 249, 0.95);
+            --text-secondary: #94a3b8;
             --accent-primary: #a855f7;
             --accent-secondary: #8b5cf6;
-            --card-bg: #16213e;
+            --accent-tertiary: #c084fc;
+            --card-bg: #1e293b;
             --card-shadow: rgba(168, 85, 247, 0.2);
-            --header-bg: rgba(22, 33, 62, 0.95);
-            --skill-bg: #1e293b;
-            --border-color: #334155;
+            --border-light: #334155;
+            --success-color: #34d399;
+            --warning-color: #fbbf24;
         }
 
         * {
@@ -87,293 +85,369 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--bg-gradient);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-            transition: background 0.3s ease, color 0.3s ease;
+            line-height: 1.7;
+            transition: all 0.3s ease;
+            scroll-behavior: smooth;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Loading Animations */
-        .fade-in {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        .fade-in-delay {
-            animation: fadeInUp 0.8s ease-out 0.2s both;
-        }
-
-        .fade-in-delay-2 {
-            animation: fadeInUp 0.8s ease-out 0.4s both;
-        }
-
-        .skeleton-loading {
-            background: linear-gradient(90deg, var(--card-shadow) 25%, transparent 50%, var(--card-shadow) 75%);
-            background-size: 200% 100%;
-            animation: skeleton 1.5s infinite;
-        }
-
-        @keyframes skeleton {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
+            padding: 0 2rem;
         }
 
         /* Header */
-        header {
-            background: var(--header-bg);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
+        .header {
+            position: sticky;
             top: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
             z-index: 1000;
-            padding: 1rem 0;
-            box-shadow: 0 2px 20px var(--card-shadow);
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
         }
 
-        nav {
+        [data-theme="dark"] .header {
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1rem 0;
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
+            font-size: 1.5rem;
+            font-weight: 700;
             color: var(--accent-primary);
-            transition: color 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .nav-links {
+        .nav-menu {
             display: flex;
             list-style: none;
             gap: 2rem;
             align-items: center;
         }
 
-        .nav-links a {
+        .nav-link {
             text-decoration: none;
-            color: var(--text-primary);
+            color: var(--text-secondary);
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .nav-links a:hover {
+        .nav-link:hover {
             color: var(--accent-primary);
         }
 
-        /* Dark Mode Toggle */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Theme Toggle */
         .theme-toggle {
-            background: none;
-            border: 2px solid var(--accent-primary);
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
             border-radius: 50px;
-            padding: 0.5rem 1rem;
-            color: var(--accent-primary);
+            padding: 0.5rem;
             cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 500;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            box-shadow: 0 2px 8px var(--card-shadow);
         }
 
         .theme-toggle:hover {
-            background: var(--accent-primary);
-            color: white;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px var(--card-shadow);
         }
 
         /* Hero Section */
         .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 8rem 0 6rem;
             text-align: center;
-            color: var(--text-light);
             position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                var(--accent-primary) 0%, 
+                var(--accent-secondary) 50%, 
+                var(--accent-tertiary) 100%);
+            opacity: 0.05;
+            z-index: -1;
         }
 
         .hero-content {
-            animation: fadeInUp 1s ease-out;
+            position: relative;
+            z-index: 1;
         }
 
-        .hero h1 {
-            font-size: 4rem;
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
             margin-bottom: 1rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-            color: white;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInUp 0.8s ease-out;
         }
 
-        .hero p {
-            font-size: 1.5rem;
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
             margin-bottom: 2rem;
-            color: rgba(255, 255, 255, 0.95);
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+            animation: slideInUp 0.8s ease-out 0.2s both;
         }
 
-        .cta-button {
-            display: inline-block;
-            padding: 15px 30px;
-            background: rgba(255, 255, 255, 0.2);
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            animation: slideInUp 0.8s ease-out 0.4s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 0.8s ease-out 0.6s both;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
             color: white;
-            text-decoration: none;
+            padding: 1rem 2rem;
+            border: none;
             border-radius: 50px;
+            text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
         }
 
-        .cta-button:hover {
-            background: rgba(255, 255, 255, 0.3);
+        .btn-primary:hover {
             transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
         }
 
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--accent-primary);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 20px var(--card-shadow);
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            padding: 1rem 2rem;
+            border: 2px solid var(--border-light);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
             transition: all 0.3s ease;
-            opacity: 0;
-            visibility: hidden;
-            z-index: 1001;
         }
 
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            background: var(--accent-secondary);
+        .btn-secondary:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
             transform: translateY(-2px);
         }
 
-        /* Sections */
-        section {
-            padding: 5rem 0;
-            background: var(--bg-primary);
-            transition: background 0.3s ease;
+        /* Section Styles */
+        .section {
+            padding: 6rem 0;
+            position: relative;
         }
 
-        section:nth-child(even) {
+        .section:nth-child(even) {
             background: var(--bg-secondary);
         }
 
-        .section-title {
+        .section-header {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--text-primary);
-            transition: color 0.3s ease;
+            margin-bottom: 4rem;
         }
 
-        /* About */
-        .about-content {
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about-grid {
             display: grid;
             grid-template-columns: 1fr 2fr;
-            gap: 3rem;
+            gap: 4rem;
             align-items: center;
         }
 
-        .profile-img {
+        .about-image {
+            position: relative;
+        }
+
+        .profile-placeholder {
             width: 300px;
             height: 300px;
-            border-radius: 50%;
-            background: var(--bg-gradient);
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 6rem;
+            font-size: 4rem;
             color: white;
             margin: 0 auto;
-            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .profile-img:hover {
-            transform: scale(1.05);
+        .profile-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
         }
 
-        .personality-tags {
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .about-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
+            gap: 0.8rem;
+            margin-top: 2rem;
         }
 
         .tag {
-            background: var(--bg-gradient);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
+            background: var(--card-bg);
+            color: var(--accent-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
             font-size: 0.9rem;
             font-weight: 500;
-            transition: transform 0.2s ease;
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
         }
 
         .tag:hover {
+            background: var(--accent-primary);
+            color: white;
             transform: translateY(-2px);
         }
 
-        /* Skills */
+        /* Skills Grid */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-bottom: 3rem;
         }
 
         .skill-card {
             background: var(--card-bg);
             padding: 2rem;
             border-radius: 15px;
-            box-shadow: 0 5px 25px var(--card-shadow);
+            border: 1px solid var(--border-light);
             transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
         }
 
         .skill-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px var(--card-shadow);
+            box-shadow: 0 20px 40px var(--card-shadow);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
 
         .skill-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--bg-gradient);
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: white;
-            transition: transform 0.3s ease;
-        }
-
-        .skill-card:hover .skill-icon {
-            transform: rotate(360deg);
         }
 
         .skill-list {
@@ -384,23 +458,21 @@
         }
 
         .skill-item {
-            background: var(--skill-bg);
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
             padding: 0.3rem 0.8rem;
-            border-radius: 15px;
+            border-radius: 20px;
             font-size: 0.85rem;
-            color: var(--accent-primary);
             font-weight: 500;
             transition: all 0.2s ease;
-            border: 1px solid var(--border-color);
         }
 
         .skill-item:hover {
             background: var(--accent-primary);
             color: white;
-            transform: translateY(-1px);
         }
 
-        /* Projects */
+        /* Projects Grid */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -410,55 +482,60 @@
         .project-card {
             background: var(--card-bg);
             border-radius: 15px;
+            border: 1px solid var(--border-light);
             overflow: hidden;
-            box-shadow: 0 5px 25px var(--card-shadow);
             transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
+            position: relative;
         }
 
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px var(--card-shadow);
+            box-shadow: 0 20px 40px var(--card-shadow);
         }
 
-        .project-img {
-            height: 200px;
-            background: var(--bg-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .project-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
             color: white;
-            font-size: 2rem;
-            transition: transform 0.3s ease;
+            text-align: center;
         }
 
-        .project-card:hover .project-img {
-            transform: scale(1.1);
+        .project-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
         }
 
         .project-content {
             padding: 1.5rem;
         }
 
-        .project-tech {
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .tech-stack {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.3rem;
-            margin-top: 1rem;
+            gap: 0.5rem;
         }
 
         .tech-tag {
             background: var(--accent-primary);
             color: white;
             padding: 0.2rem 0.6rem;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 0.75rem;
             font-weight: 500;
-            transition: background 0.2s ease;
-        }
-
-        .tech-tag:hover {
-            background: var(--accent-secondary);
         }
 
         /* Timeline */
@@ -468,161 +545,221 @@
             margin: 0 auto;
         }
 
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 4px;
-            background: var(--accent-primary);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -2px;
-        }
-
         .timeline-item {
-            padding: 10px 40px;
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
             position: relative;
-            background: inherit;
-            width: 50%;
-            transition: transform 0.3s ease;
         }
 
-        .timeline-item:hover {
-            transform: scale(1.02);
-        }
-
-        .timeline-item::after {
+        .timeline-item::before {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
-            right: -10px;
-            background: var(--accent-primary);
+            left: 2rem;
+            top: 3rem;
+            bottom: -3rem;
+            width: 2px;
+            background: var(--border-light);
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-marker {
+            width: 4rem;
+            height: 4rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
             border-radius: 50%;
-            top: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .timeline-item:hover::after {
-            background: var(--accent-secondary);
-            transform: scale(1.2);
-        }
-
-        .timeline-item:nth-child(even) {
-            left: 50%;
-            text-align: left;
-        }
-
-        .timeline-item:nth-child(even)::after {
-            left: -10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
         }
 
         .timeline-content {
-            padding: 20px 30px;
+            flex: 1;
             background: var(--card-bg);
-            position: relative;
+            padding: 2rem;
             border-radius: 15px;
-            box-shadow: 0 5px 25px var(--card-shadow);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--border-light);
             transition: all 0.3s ease;
         }
 
-        /* Current Status */
+        .timeline-content:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px var(--card-shadow);
+        }
+
+        .timeline-date {
+            color: var(--accent-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        /* Status Cards */
         .status-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
         }
 
         .status-card {
-            background: var(--bg-gradient);
-            color: white;
+            background: var(--card-bg);
             padding: 2rem;
             border-radius: 15px;
+            border: 1px solid var(--border-light);
             text-align: center;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .status-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, var(--success-color), var(--warning-color));
         }
 
         .status-card:hover {
-            transform: translateY(-5px) scale(1.02);
-        }
-
-        .status-emoji {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            transition: transform 0.3s ease;
-        }
-
-        .status-card:hover .status-emoji {
-            transform: scale(1.2);
-        }
-
-        /* Contact */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .contact-item {
-            padding: 2rem;
-            background: var(--card-bg);
-            border-radius: 15px;
-            box-shadow: 0 5px 25px var(--card-shadow);
-            transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            hyphens: auto;
-        }
-
-        .contact-item p {
-            word-break: break-all;
-            overflow-wrap: break-word;
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-
-        .contact-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 35px var(--card-shadow);
         }
 
-        .contact-item a {
-            text-decoration: none;
-            color: inherit;
+        .status-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
             display: block;
-            transition: color 0.3s ease;
         }
 
-        .contact-item:hover a {
+        .status-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-light);
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px var(--card-shadow);
             color: var(--accent-primary);
         }
 
         .contact-icon {
             font-size: 2rem;
             margin-bottom: 1rem;
-            color: var(--accent-primary);
-            transition: all 0.3s ease;
+            display: block;
         }
 
-        .contact-item:hover .contact-icon {
-            transform: scale(1.2);
-            color: var(--accent-secondary);
+        .contact-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
         }
 
         /* Footer */
-        footer {
-            background: var(--text-primary);
-            color: var(--bg-primary);
+        .footer {
+            background: var(--bg-secondary);
+            padding: 3rem 0;
             text-align: center;
-            padding: 2rem 0;
-            transition: all 0.3s ease;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .footer p {
+            color: var(--text-secondary);
         }
 
         /* Animations */
-        @keyframes fadeInUp {
+        @keyframes slideInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
@@ -633,78 +770,69 @@
             }
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .fade-in {
+            animation: slideInUp 0.6s ease-out;
         }
 
-        .pulse {
-            animation: pulse 2s infinite;
+        .fade-in-delay {
+            animation: slideInUp 0.6s ease-out 0.2s both;
         }
 
-        /* Error States */
-        .error-message {
-            background: #fee;
-            color: #c53030;
-            padding: 1rem;
-            border-radius: 8px;
-            margin: 1rem 0;
-            border: 1px solid #fed7d7;
-            display: none;
+        .fade-in-delay-2 {
+            animation: slideInUp 0.6s ease-out 0.4s both;
         }
 
-        .fallback-content {
-            display: none;
-        }
-
-        /* Responsive */
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .timeline::after {
-                left: 31px;
-            }
-            
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-            
-            .timeline-item::after {
-                left: 22px;
-            }
-            
-            .timeline-item:nth-child(even) {
-                left: 0%;
+            .container {
+                padding: 0 1rem;
             }
 
-            .nav-links {
+            .nav-menu {
                 gap: 1rem;
                 font-size: 0.9rem;
             }
 
-            .theme-toggle {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.8rem;
+            .hero {
+                padding: 4rem 0 3rem;
             }
 
-            .back-to-top {
-                width: 45px;
-                height: 45px;
-                bottom: 20px;
-                right: 20px;
+            .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .profile-placeholder {
+                width: 200px;
+                height: 200px;
+                font-size: 3rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .timeline-item::before {
+                display: none;
+            }
+
+            .timeline-content:hover {
+                transform: translateY(-5px);
+            }
+
+            .section {
+                padding: 4rem 0;
             }
         }
 
-        /* Reduced motion for accessibility */
+        /* Accessibility */
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation-duration: 0.01ms !important;
@@ -713,331 +841,385 @@
             }
         }
 
-        /* High contrast mode support */
         @media (prefers-contrast: high) {
             :root {
-                --card-shadow: rgba(0, 0, 0, 0.8);
-                --border-color: #000000;
+                --card-shadow: rgba(0, 0, 0, 0.3);
+                --border-light: #000000;
             }
         }
     </style>
 </head>
 <body>
-    <div class="error-message" id="jsError">
-        JavaScript is disabled or encountering errors. Some features may not work properly.
-    </div>
-
-    <header>
-        <nav class="container">
-            <div class="logo">giffynuss</div>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#timeline">Journey</a></li>
-                <li><a href="#contact">Contact</a></li>
+    <header class="header">
+        <nav class="nav container">
+            <a href="#" class="logo">
+                <span>💻</span>
+                giffynuss
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#journey" class="nav-link">Journey</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
                 <li>
-                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
                         <span id="themeIcon">🌙</span>
-                        <span id="themeText">Dark</span>
                     </button>
                 </li>
             </ul>
         </nav>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Patryk</h1>
-            <p>Business Informatics Student • IT Consultant • Developer</p>
-            <a href="#about" class="cta-button">Learn More</a>
-        </div>
-    </section>
-
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title fade-in">About Me</h2>
-            <div class="about-content">
-                <div class="profile-img fade-in">👨‍💻</div>
-                <div class="fade-in-delay">
-                    <h3>Hi, I'm Patryk!</h3>
-                    <p>Also known as <strong>giffynuss</strong> and <strong>Yonya</strong> in the digital world. I'm currently pursuing a B.Sc. in Business Informatics while simultaneously completing an apprenticeship as an IT Specialist in Application Development and earning an IT Consultant certification.</p>
-                    <br>
-                    <p>I'm passionate about technology - both hardware and software. I love experimenting with new technologies and I'm always curious to learn something new. Everything related to technology fascinates me, and I enjoy developing, creating, and building useful solutions.</p>
-                    <br>
-                    <p>I have a particular interest in improving processes, structures, and complex environments. When I'm not coding, you'll find me engaged in sports, playing video games, working on personal projects, exploring automotive technology, traveling, attending concerts, or spending quality time with friends.</p>
-                    
-                    <div class="personality-tags">
-                        <span class="tag">Tech Enthusiast</span>
-                        <span class="tag">Problem Solver</span>
-                        <span class="tag">Always Learning</span>
-                        <span class="tag">Creative Developer</span>
-                        <span class="tag">Music Lover</span>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Patryk</h1>
+                    <p class="hero-subtitle">Business Informatics Student • IT Consultant • Developer</p>
+                    <p class="hero-description">
+                        Passionate about technology and innovation, I'm pursuing a B.Sc. in Business Informatics while completing an IT Specialist apprenticeship and earning an IT Consultant certification.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="#about" class="btn-primary">Get to know me</a>
+                        <a href="#contact" class="btn-secondary">Let's connect</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="skills">
-        <div class="container">
-            <h2 class="section-title">Skills & Technologies</h2>
-            <div class="skills-grid">
-                <div class="skill-card fade-in">
-                    <div class="skill-icon">💻</div>
-                    <h3>Programming Languages</h3>
-                    <p>Core programming languages I work with daily</p>
-                    <div class="skill-list">
-                        <span class="skill-item">Python</span>
-                        <span class="skill-item">C#</span>
-                        <span class="skill-item">C/C++</span>
-                        <span class="skill-item">Java</span>
-                        <span class="skill-item">JavaScript</span>
-                        <span class="skill-item">Dart</span>
-                    </div>
+        <section id="about" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-subtitle">Discover who I am and what drives my passion for technology</p>
                 </div>
-                <div class="skill-card fade-in-delay">
-                    <div class="skill-icon">🗄️</div>
-                    <h3>Database & Backend</h3>
-                    <p>Server-side technologies and database management</p>
-                    <div class="skill-list">
-                        <span class="skill-item">SQL</span>
-                        <span class="skill-item">PL/SQL</span>
-                        <span class="skill-item">Node.js</span>
-                        <span class="skill-item">Git</span>
+                <div class="about-grid">
+                    <div class="about-image fade-in">
+                        <div class="profile-placeholder">👨‍💻</div>
                     </div>
-                </div>
-                <div class="skill-card fade-in-delay-2">
-                    <div class="skill-icon">📱</div>
-                    <h3>Frameworks & Development</h3>
-                    <p>Modern frameworks for efficient development</p>
-                    <div class="skill-list">
-                        <span class="skill-item">Flutter</span>
-                        <span class="skill-item">WPF</span>
-                        <span class="skill-item">Capacitor</span>
-                        <span class="skill-item">HTML/CSS</span>
-                    </div>
-                </div>
-                <div class="skill-card fade-in">
-                    <div class="skill-icon">🏢</div>
-                    <h3>Business & Management</h3>
-                    <p>Enterprise solutions and methodologies</p>
-                    <div class="skill-list">
-                        <span class="skill-item">ITIL</span>
-                        <span class="skill-item">SCRUM</span>
-                        <span class="skill-item">SAP ERP</span>
-                        <span class="skill-item">MS Office</span>
-                        <span class="skill-item">Linux</span>
-                        <span class="skill-item">Business English (C1)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <div class="container">
-            <h2 class="section-title">Current Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-img">🏃‍♂️</div>
-                    <div class="project-content">
-                        <h3>Sports Festival App</h3>
-                        <p>A comprehensive sports festival management application for data recording, organization, and management. Designed for both event organizers and supervisors with real-time capabilities.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">HTML/CSS</span>
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">Capacitor</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-img">🤖</div>
-                    <div class="project-content">
-                        <h3>Ivy Discord Bot</h3>
-                        <p>A versatile all-in-one Discord bot designed for both regular users and administrators. Features include server management, user utilities, and custom functionality.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">Discord.js</span>
-                            <span class="tech-tag">JavaScript</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-img">🎨</div>
-                    <div class="project-content">
-                        <h3>Custom Discord Theme</h3>
-                        <p>A personalized Discord theme that runs through various plugins, enhancing the user interface with custom styling and improved user experience.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">JSON</span>
-                            <span class="tech-tag">JavaScript</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-img">⛏️</div>
-                    <div class="project-content">
-                        <h3>Minecraft Resource Pack</h3>
-                        <p>A personalized Minecraft resource pack with various customizations designed to enhance the gaming experience with improved textures and UI elements.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Game Design</span>
-                            <span class="tech-tag">Texture Art</span>
-                            <span class="tech-tag">JSON</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-img">📱</div>
-                    <div class="project-content">
-                        <h3>Small App Projects</h3>
-                        <p>Various smaller applications and utilities I've developed to solve specific problems or explore new technologies. Always working on something new!</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Various</span>
-                            <span class="tech-tag">Experimental</span>
-                            <span class="tech-tag">Learning</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-img">💡</div>
-                    <div class="project-content">
-                        <h3>And Many More...</h3>
-                        <p>I'm constantly working on new projects and ideas. Check out my GitHub for the latest updates and contributions to the open-source community!</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Ongoing</span>
-                            <span class="tech-tag">Innovation</span>
+                    <div class="about-content fade-in-delay">
+                        <h3>Hi, I'm Patryk!</h3>
+                        <p>
+                            Also known as <strong>giffynuss</strong> and <strong>Yonya</strong> in the digital world. I'm currently pursuing a B.Sc. in Business Informatics while simultaneously completing an apprenticeship as an IT Specialist in Application Development and earning an IT Consultant certification.
+                        </p>
+                        <p>
+                            I'm passionate about technology - both hardware and software. I love experimenting with new technologies and I'm always curious to learn something new. Everything related to technology fascinates me, and I enjoy developing, creating, and building useful solutions.
+                        </p>
+                        <p>
+                            I have a particular interest in improving processes, structures, and complex environments. When I'm not coding, you'll find me engaged in sports, playing video games, working on personal projects, exploring automotive technology, traveling, attending concerts, or spending quality time with friends.
+                        </p>
+                        <div class="tags">
+                            <span class="tag">Tech Enthusiast</span>
+                            <span class="tag">Problem Solver</span>
+                            <span class="tag">Always Learning</span>
+                            <span class="tag">Creative Developer</span>
+                            <span class="tag">Music Lover</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="timeline">
-        <div class="container">
-            <h2 class="section-title">My Journey</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>2027 - Future</h3>
-                        <h4>Career Opportunities</h4>
-                        <p>Looking forward to exciting opportunities in the IT industry, potentially joining innovative companies to contribute to cutting-edge projects.</p>
-                    </div>
+        <section id="skills" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Skills & Technologies</h2>
+                    <p class="section-subtitle">The tools and technologies I work with to bring ideas to life</p>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>2023 - Present</h3>
-                        <h4>Triple Education Path</h4>
-                        <p>Currently pursuing B.Sc. Business Informatics, completing IT Specialist apprenticeship, and earning IT Consultant certification. Dual program with international company in cooperation with Siemens Energy AG.</p>
+                <div class="skills-grid">
+                    <div class="skill-card fade-in">
+                        <div class="skill-header">
+                            <div class="skill-icon">💻</div>
+                            <div>
+                                <h3>Programming Languages</h3>
+                                <p>Core programming languages I work with daily</p>
+                            </div>
+                        </div>
+                        <div class="skill-list">
+                            <span class="skill-item">Python</span>
+                            <span class="skill-item">C#</span>
+                            <span class="skill-item">C/C++</span>
+                            <span class="skill-item">Java</span>
+                            <span class="skill-item">JavaScript</span>
+                            <span class="skill-item">Dart</span>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>2023</h3>
-                        <h4>High School Graduate</h4>
-                        <p>Successfully completed Abitur in Germany, laying the foundation for my higher education and professional development in the IT field.</p>
+                    <div class="skill-card fade-in-delay">
+                        <div class="skill-header">
+                            <div class="skill-icon">🗄️</div>
+                            <div>
+                                <h3>Database & Backend</h3>
+                                <p>Server-side technologies and database management</p>
+                            </div>
+                        </div>
+                        <div class="skill-list">
+                            <span class="skill-item">SQL</span>
+                            <span class="skill-item">PL/SQL</span>
+                            <span class="skill-item">Node.js</span>
+                            <span class="skill-item">Git</span>
+                        </div>
+                    </div>
+                    <div class="skill-card fade-in-delay-2">
+                        <div class="skill-header">
+                            <div class="skill-icon">📱</div>
+                            <div>
+                                <h3>Frameworks & Development</h3>
+                                <p>Modern frameworks for efficient development</p>
+                            </div>
+                        </div>
+                        <div class="skill-list">
+                            <span class="skill-item">Flutter</span>
+                            <span class="skill-item">WPF</span>
+                            <span class="skill-item">Capacitor</span>
+                            <span class="skill-item">HTML/CSS</span>
+                        </div>
+                    </div>
+                    <div class="skill-card fade-in">
+                        <div class="skill-header">
+                            <div class="skill-icon">🏢</div>
+                            <div>
+                                <h3>Business & Management</h3>
+                                <p>Enterprise solutions and methodologies</p>
+                            </div>
+                        </div>
+                        <div class="skill-list">
+                            <span class="skill-item">ITIL</span>
+                            <span class="skill-item">SCRUM</span>
+                            <span class="skill-item">SAP ERP</span>
+                            <span class="skill-item">MS Office</span>
+                            <span class="skill-item">Linux</span>
+                            <span class="skill-item">Business English (C1)</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="status" style="background: var(--bg-secondary);">
-        <div class="container">
-            <h2 class="section-title">What I'm Up To</h2>
-            <div class="status-grid">
-                <div class="status-card">
-                    <div class="status-emoji">🎓</div>
-                    <h3>Currently Studying</h3>
-                    <p>B.Sc. Business Informatics + IT Specialist Apprenticeship + IT Consultant Certification</p>
+        <section id="projects" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Current Projects</h2>
+                    <p class="section-subtitle">A showcase of my recent work and ongoing developments</p>
                 </div>
-                <div class="status-card">
-                    <div class="status-emoji">🎵</div>
-                    <h3>Currently Listening</h3>
-                    <p>Hip Hop, J-Pop, Alternative Rock, and exploring new genres that inspire creativity</p>
-                </div>
-                <div class="status-card">
-                    <div class="status-emoji">🚀</div>
-                    <h3>Currently Building</h3>
-                    <p>Working on innovative projects that solve real-world problems and enhance user experiences</p>
-                </div>
-                <div class="status-card">
-                    <div class="status-emoji">🌱</div>
-                    <h3>Always Learning</h3>
-                    <p>Exploring new technologies, methodologies, and staying updated with the latest industry trends</p>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-emoji">🏃‍♂️</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Sports Festival App</h3>
+                            <p class="project-description">
+                                A comprehensive sports festival management application for data recording, organization, and management. Designed for both event organizers and supervisors with real-time capabilities.
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">HTML/CSS</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">Capacitor</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-emoji">🤖</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Ivy Discord Bot</h3>
+                            <p class="project-description">
+                                A versatile all-in-one Discord bot designed for both regular users and administrators. Features include server management, user utilities, and custom functionality.
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">Discord.js</span>
+                                <span class="tech-tag">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-emoji">🎨</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Custom Discord Theme</h3>
+                            <p class="project-description">
+                                A personalized Discord theme that runs through various plugins, enhancing the user interface with custom styling and improved user experience.
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">JSON</span>
+                                <span class="tech-tag">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-emoji">⛏️</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Minecraft Resource Pack</h3>
+                            <p class="project-description">
+                                A personalized Minecraft resource pack with various customizations designed to enhance the gaming experience with improved textures and UI elements.
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Game Design</span>
+                                <span class="tech-tag">Texture Art</span>
+                                <span class="tech-tag">JSON</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-emoji">📱</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Small App Projects</h3>
+                            <p class="project-description">
+                                Various smaller applications and utilities I've developed to solve specific problems or explore new technologies. Always working on something new!
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Various</span>
+                                <span class="tech-tag">Experimental</span>
+                                <span class="tech-tag">Learning</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-emoji">💡</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">And Many More...</h3>
+                            <p class="project-description">
+                                I'm constantly working on new projects and ideas. Check out my GitHub for the latest updates and contributions to the open-source community!
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Ongoing</span>
+                                <span class="tech-tag">Innovation</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="contact">
-        <div class="container">
-            <h2 class="section-title">Let's Connect!</h2>
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <a href="mailto:patryk.work.business@gmail.com" aria-label="Send email to Patryk">
-                        <div class="contact-icon">📧</div>
-                        <h3>Email</h3>
-                        <p>patryk.work.business@gmail.com</p>
+        <section id="journey" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">My Journey</h2>
+                    <p class="section-subtitle">The path that led me to where I am today</p>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">🚀</div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2027 - Future</div>
+                            <h3 class="timeline-title">Career Opportunities</h3>
+                            <p>Looking forward to exciting opportunities in the IT industry, potentially joining innovative companies to contribute to cutting-edge projects.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">📚</div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2023 - Present</div>
+                            <h3 class="timeline-title">Triple Education Path</h3>
+                            <p>Currently pursuing B.Sc. Business Informatics, completing IT Specialist apprenticeship, and earning IT Consultant certification. Dual program with international company in cooperation with Siemens Energy AG.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">🎓</div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2023</div>
+                            <h3 class="timeline-title">High School Graduate</h3>
+                            <p>Successfully completed Abitur in Germany, laying the foundation for my higher education and professional development in the IT field.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">What I'm Up To</h2>
+                    <p class="section-subtitle">Current activities and ongoing interests</p>
+                </div>
+                <div class="status-grid">
+                    <div class="status-card">
+                        <span class="status-emoji">🎓</span>
+                        <h3 class="status-title">Currently Studying</h3>
+                        <p>B.Sc. Business Informatics + IT Specialist Apprenticeship + IT Consultant Certification</p>
+                    </div>
+                    <div class="status-card">
+                        <span class="status-emoji">🎵</span>
+                        <h3 class="status-title">Currently Listening</h3>
+                        <p>Hip Hop, J-Pop, Alternative Rock, and exploring new genres that inspire creativity</p>
+                    </div>
+                    <div class="status-card">
+                        <span class="status-emoji">🚀</span>
+                        <h3 class="status-title">Currently Building</h3>
+                        <p>Working on innovative projects that solve real-world problems and enhance user experiences</p>
+                    </div>
+                    <div class="status-card">
+                        <span class="status-emoji">🌱</span>
+                        <h3 class="status-title">Always Learning</h3>
+                        <p>Exploring new technologies, methodologies, and staying updated with the latest industry trends</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Let's Connect!</h2>
+                    <p class="section-subtitle">Ready to start a conversation? Reach out through any of these channels</p>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <span class="contact-icon">📧</span>
+                        <h3 class="contact-title">Email</h3>
+                        <p class="contact-info">patryk.work.business@gmail.com</p>
+                    </div>
+                    <a href="https://github.com/giffynuss" target="_blank" rel="noopener noreferrer" class="contact-card">
+                        <span class="contact-icon">🐙</span>
+                        <h3 class="contact-title">GitHub</h3>
+                        <p class="contact-info">github.com/giffynuss</p>
                     </a>
-                </div>
-                <div class="contact-item">
-                    <a href="https://github.com/giffynuss" target="_blank" rel="noopener noreferrer" aria-label="Visit GitHub profile">
-                        <div class="contact-icon">🐙</div>
-                        <h3>GitHub</h3>
-                        <p>github.com/giffynuss</p>
-                    </a>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">💼</div>
-                    <h3>LinkedIn</h3>
-                    <p>Coming Soon</p>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">🎮</div>
-                    <h3>Discord</h3>
-                    <p>@giffynuss</p>
+                    <div class="contact-card">
+                        <span class="contact-icon">💼</span>
+                        <h3 class="contact-title">LinkedIn</h3>
+                        <p class="contact-info">Coming Soon</p>
+                    </div>
+                    <div class="contact-card">
+                        <span class="contact-icon">🎮</span>
+                        <h3 class="contact-title">Discord</h3>
+                        <p class="contact-info">@giffynuss</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
         ↑
     </button>
 
-    <footer>
+    <footer class="footer">
         <div class="container">
             <p>&copy; 2025 Patryk (giffynuss). Crafted with ❤️ and lots of ☕</p>
         </div>
     </footer>
 
     <script>
-        // Error handling wrapper
-        function safeExecution(fn, fallback) {
-            try {
-                return fn();
-            } catch (error) {
-                console.error('Script error:', error);
-                if (fallback) fallback();
-                return null;
-            }
-        }
-
-        // Theme Management (using session state instead of localStorage)
+        // Theme Management
         let currentTheme = 'light';
 
         function initTheme() {
             const themeToggle = document.getElementById('themeToggle');
             const themeIcon = document.getElementById('themeIcon');
-            const themeText = document.getElementById('themeText');
             
-            if (!themeToggle || !themeIcon || !themeText) {
-                console.warn('Theme toggle elements not found');
-                return;
-            }
+            if (!themeToggle || !themeIcon) return;
 
             // Check system preference
             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -1066,16 +1248,13 @@
         function applyTheme(theme) {
             const body = document.body;
             const themeIcon = document.getElementById('themeIcon');
-            const themeText = document.getElementById('themeText');
 
             if (theme === 'dark') {
                 body.setAttribute('data-theme', 'dark');
                 if (themeIcon) themeIcon.textContent = '☀️';
-                if (themeText) themeText.textContent = 'Light';
             } else {
                 body.removeAttribute('data-theme');
                 if (themeIcon) themeIcon.textContent = '🌙';
-                if (themeText) themeText.textContent = 'Dark';
             }
         }
 
@@ -1131,17 +1310,16 @@
                     if (entry.isIntersecting) {
                         const element = entry.target;
                         
-                        // Add appropriate animation class
                         if (element.classList.contains('fade-in') || 
                             element.classList.contains('fade-in-delay') || 
                             element.classList.contains('fade-in-delay-2')) {
                             element.style.animation = element.classList.contains('fade-in-delay-2') 
-                                ? 'fadeInUp 0.8s ease-out 0.4s both'
+                                ? 'slideInUp 0.6s ease-out 0.4s both'
                                 : element.classList.contains('fade-in-delay')
-                                ? 'fadeInUp 0.8s ease-out 0.2s both'
-                                : 'fadeInUp 0.8s ease-out forwards';
+                                ? 'slideInUp 0.6s ease-out 0.2s both'
+                                : 'slideInUp 0.6s ease-out forwards';
                         } else {
-                            element.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                            element.style.animation = 'slideInUp 0.6s ease-out forwards';
                         }
                         
                         observer.unobserve(element);
@@ -1151,7 +1329,7 @@
 
             // Observe elements for animation
             const elementsToAnimate = document.querySelectorAll(
-                '.skill-card, .project-card, .timeline-item, .status-card, .fade-in, .fade-in-delay, .fade-in-delay-2'
+                '.skill-card, .project-card, .timeline-item, .status-card, .fade-in, .fade-in-delay, .fade-in-delay-2, .contact-card'
             );
             
             elementsToAnimate.forEach(el => {
@@ -1159,94 +1337,43 @@
             });
         }
 
-        // Enhanced contact item interactions
-        function initContactInteractions() {
-            document.querySelectorAll('.contact-item').forEach(item => {
-                item.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-5px) scale(1.02)';
+        // Enhanced interactions
+        function initInteractions() {
+            // Add hover effects to cards
+            document.querySelectorAll('.skill-card, .project-card, .status-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
                 });
                 
-                item.addEventListener('mouseleave', function() {
+                card.addEventListener('mouseleave', function() {
                     this.style.transform = 'translateY(0) scale(1)';
                 });
             });
-        }
 
-        // Loading state management
-        function initLoadingStates() {
-            // Remove skeleton loading classes when content is ready
-            const removeSkeletons = () => {
-                document.querySelectorAll('.skeleton-loading').forEach(el => {
-                    el.classList.remove('skeleton-loading');
-                });
-            };
-
-            // Remove skeletons after content loads
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', removeSkeletons);
-            } else {
-                removeSkeletons();
-            }
-        }
-
-        // Error handling for images and external resources
-        function initErrorHandling() {
-            // Handle image loading errors
-            document.querySelectorAll('img').forEach(img => {
-                img.addEventListener('error', function() {
-                    this.style.display = 'none';
-                    console.warn('Image failed to load:', this.src);
-                });
-            });
-
-            // Show fallback content for JavaScript-dependent features
-            const jsErrorElement = document.getElementById('jsError');
-            if (jsErrorElement && !window.navigator.onLine) {
-                jsErrorElement.style.display = 'block';
-                jsErrorElement.textContent = 'You appear to be offline. Some features may not work properly.';
-            }
-        }
-
-        // Performance monitoring
-        function initPerformanceMonitoring() {
-            if ('performance' in window) {
-                window.addEventListener('load', () => {
-                    const perfData = performance.timing;
-                    const loadTime = perfData.loadEventEnd - perfData.navigationStart;
-                    
-                    if (loadTime > 3000) {
-                        console.warn('Page load time is high:', loadTime + 'ms');
-                    }
-                });
-            }
-        }
-
-        // Accessibility enhancements
-        function initAccessibility() {
-            // Keyboard navigation for theme toggle
-            const themeToggle = document.getElementById('themeToggle');
-            if (themeToggle) {
-                themeToggle.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        toggleTheme();
-                    }
-                });
-            }
-
-            // Focus management for smooth scrolling
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        // Set focus to target for screen readers
+            // Add click effects to contact cards
+            document.querySelectorAll('.contact-card').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Only for non-link cards
+                    if (!this.href) {
+                        // Add a subtle animation on click
+                        this.style.transform = 'scale(0.98)';
                         setTimeout(() => {
-                            target.setAttribute('tabindex', '-1');
-                            target.focus();
-                        }, 100);
+                            this.style.transform = '';
+                        }, 150);
                     }
                 });
             });
+        }
+
+        // Error handling wrapper
+        function safeExecution(fn, fallback) {
+            try {
+                return fn();
+            } catch (error) {
+                console.error('Script error:', error);
+                if (fallback) fallback();
+                return null;
+            }
         }
 
         // Main initialization
@@ -1255,11 +1382,7 @@
             safeExecution(initBackToTop, () => console.warn('Back to top failed to initialize'));
             safeExecution(initSmoothScrolling, () => console.warn('Smooth scrolling failed to initialize'));
             safeExecution(initAnimations, () => console.warn('Animations failed to initialize'));
-            safeExecution(initContactInteractions, () => console.warn('Contact interactions failed to initialize'));
-            safeExecution(initLoadingStates, () => console.warn('Loading states failed to initialize'));
-            safeExecution(initErrorHandling, () => console.warn('Error handling failed to initialize'));
-            safeExecution(initPerformanceMonitoring, () => console.warn('Performance monitoring failed to initialize'));
-            safeExecution(initAccessibility, () => console.warn('Accessibility enhancements failed to initialize'));
+            safeExecution(initInteractions, () => console.warn('Interactions failed to initialize'));
         }
 
         // Initialize when DOM is ready
@@ -1272,10 +1395,6 @@
         // Global error handler
         window.addEventListener('error', (e) => {
             console.error('Global error:', e.error);
-            const jsErrorElement = document.getElementById('jsError');
-            if (jsErrorElement) {
-                jsErrorElement.style.display = 'block';
-            }
         });
 
         // Unhandled promise rejection handler
